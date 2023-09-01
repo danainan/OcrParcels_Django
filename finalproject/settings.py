@@ -29,7 +29,7 @@ MODEL_ROOT = os.path.join(BASE_DIR, 'ocr/model')
 SECRET_KEY = "django-insecure-@lny6gwv83(&%1=ekfa)=e7)b3!_&t1rkgggpk=#gysr2cwasg"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
