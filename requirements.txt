@@ -181,3 +181,4 @@ yarl==1.8.2
 zipp==3.14.0
 tesserocr==2.6.1
 sentencepiece==0.1.99
+gunicorn==21.2.0
