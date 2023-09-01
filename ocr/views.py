@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect
 from django.http import StreamingHttpResponse, HttpResponse, FileResponse
 from django.views.decorators import gzip
+
 import os
 import time
 from PIL import Image
