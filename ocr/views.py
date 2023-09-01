@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.http import StreamingHttpResponse, HttpResponse, FileResponse
 from django.views.decorators import gzip
 import cv2
-import threading   
 import os
 import time
 from PIL import Image
@@ -69,7 +68,6 @@ class VideoCamera(object):
         self.video.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
         # self.video.set(cv2.CAP_PROP_FPS, 30)
         self.grabbed, self.frame = self.video.read()
-        threading.Thread(target=self.update, args=()).start()
 
     def __del__(self):
         self.video.release()
