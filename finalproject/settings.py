@@ -32,6 +32,7 @@ SECRET_KEY = "django-insecure-@lny6gwv83(&%1=ekfa)=e7)b3!_&t1rkgggpk=#gysr2cwasg
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = [‘ocrparcelsdjango-production.up.railway.app’,'*']
 
 
 
