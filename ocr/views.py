@@ -2,7 +2,6 @@
 from django.shortcuts import render, redirect
 from django.http import StreamingHttpResponse, HttpResponse, FileResponse
 from django.views.decorators import gzip
-import cv2
 import os
 import time
 from PIL import Image
@@ -58,82 +57,6 @@ def index(request, *args, **kwargs):
 
 
 
-
-
-status = {"new_image_available": False}
-class VideoCamera(object):
-    def __init__(self):
-        self.video = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-        self.video.set(cv2.CAP_PROP_FRAME_WIDTH, 720)
-        self.video.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-        # self.video.set(cv2.CAP_PROP_FPS, 30)
-        self.grabbed, self.frame = self.video.read()
-
-    def __del__(self):
-        self.video.release()
-        cv2.destroyAllWindows()
-        
-        
-
-    def release_camera(self):
-        # if self.video is not None:
-        #     self.video.release()
-        #     self.video = None
-        #     self.frame = None
-        #     cv2.destroyAllWindows()
-        #     cv2.waitKey(1)
-        cv2.destroyAllWindows()
-        cv2.waitKey(0)
-
-
-
-    def initialize_camera(self):
-        self.release_camera()
-        # cv2.CAP_DSHOW
-        # self.video = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-        VideoCamera.__init__(self)
-
-    def get_frame(self):
-        # image = self.frame
-        # _, jpeg = cv2.imencode('.jpg', image)
-        # return jpeg.tobytes()
-        if self.video is not None:
-            self.grabbed, self.frame = self.video.read()
-        if self.frame is None:
-            return None
-
-        _, jpeg = cv2.imencode('.jpg', self.frame)
-        return jpeg.tobytes()
-    
-    def update(self):
-        while True:
-            if self.video is None:
-                time.sleep(1)  # Delay to wait for camera initialization
-                continue
-            (self.grabbed, self.frame) = self.video.read()
-
-    def save_img(self):
-        media_path = os.path.join(settings.MEDIA_ROOT , 'capture.jpg')
-        # os.makedirs(os.path.dirname(media_path), exist_ok=True)
-        with open(media_path, 'wb') as f:
-            # f.write(self.frame)
-            cv2.imwrite(media_path, self.frame)
-            # # VideoCamera.__del__(self)
-            # self.release_camera()
-            
-            cv2.waitKey(1)
-            cv2.destroyAllWindows()
-            status["new_image_available"] = True
-
-    def send_image(self,request):
-        media_path = os.path.join(settings.MEDIA_ROOT , 'capture.jpg')
-        with open(media_path, 'rb') as image_file:
-            encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
-            self.release_camera()
-            return render(request, 'index.html', {'encoded_image': encoded_image},{'captured-image': encoded_image})
-
-
-
         
                 
 
@@ -161,20 +84,6 @@ def upload_img(request):
         return HttpResponse()
 
 
-def reset_camera(request):
-    print('reset')
-    if 'camera' in request.session:
-        camera = request.session['camera']
-        cv2.destroyAllWindows()
-        VideoCamera.release_camera(camera)
-        camera = None
-        del request.session['camera']
-        del request.session['livefe']
-    VideoCamera.release_camera(self=None)
-    request.session['camera'] = None
-    request.session['livefe'] = None
-
-    return redirect('index')
 
 
 
