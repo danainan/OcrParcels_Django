@@ -88,28 +88,6 @@ def upload_img(request):
 
 
 
-
-
-def gen(camera, request):
-    # if camera is None:
-    #     camera = VideoCamera()
-
-    if camera is not None:
-        camera = VideoCamera()
-        while True: 
-            frame = camera.get_frame()
-            
-            yield(b'--frame\r\n'
-                  b'Content-Type: image/png\r\n\r\n' + frame + b'\r\n\r\n')
-            if  keyboard.is_pressed('q'):
-                camera.save_img()
-                camera.send_image(request)
-                break
-            camera.release_camera()
-
-
-    else:
-        return redirect('index')
     
    
 
@@ -127,25 +105,8 @@ def capture(request):
     
 
 
-def initialize_camera(request):
-    if 'camera' in request.session:
-        camera = request.session['camera']
-        camera.initialize_camera()
-    return HttpResponse(status=200)
 
 
-    
-
-@gzip.gzip_page
-def livefe(request):
-    try:
-        cam = VideoCamera()
-        return StreamingHttpResponse(gen(cam, request),content_type="multipart/x-mixed-replace;boundary=frame")
-    except :
-        if  upload_img(request).request.method == 'POST':
-            cam.frame = None
-            cam.video = None
-            cam = None
             
 
 def save_image(request):

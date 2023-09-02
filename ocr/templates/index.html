@@ -1,3 +1,4 @@
+{% csrf_token %}
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -277,7 +278,7 @@
 
                 $("#image-container").show();
                 $("#form-container").show();
-                fetch("{% url 'reset_cam' %}")
+                
                 
                 
 
