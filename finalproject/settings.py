@@ -21,6 +21,7 @@ MEDIA_PROJECT = os.path.join(BASE_DIR, 'project/media')
 NER_ROOT = os.path.join(BASE_DIR, 'ocr/pythainlp')
 OCR_ROOT = os.path.join(BASE_DIR, 'ocr/ocrdata')
 MODEL_ROOT = os.path.join(BASE_DIR, 'ocr/model')
+TESSERACT_CMD = r'ocr/ocrdata/Tesseract-OCR/tesseract.exe'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
