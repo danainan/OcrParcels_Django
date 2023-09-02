@@ -274,7 +274,7 @@ def ocr(request):
     media_path = os.path.join(settings.MEDIA_ROOT, 'capture.jpg')
     ocr_path = os.path.join(settings.OCR_ROOT, 'tessdata_best-main')
     tesseract_path = os.path.join(settings.OCR_ROOT, 'Tesseract-OCR')
-    pytesseract.pytesseract.tesseract_cmd = os.path.join(tesseract_path, 'tesseract.exe')
+    pytesseract.tesseract_cmd = os.path.join(tesseract_path, 'tesseract.exe')
 
     if os.path.exists(media_path):
             custom_oem_psm_config = r'--oem 3 --psm 6'
