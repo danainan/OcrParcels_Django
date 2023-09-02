@@ -36,6 +36,7 @@ from django.core import serializers
 from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib import messages
 from pytesseract import *
+import pytesseract
 
 
 
