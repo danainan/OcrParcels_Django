@@ -2,11 +2,9 @@
 from django.shortcuts import render, redirect
 from django.http import StreamingHttpResponse, HttpResponse, FileResponse
 from django.views.decorators import gzip
-
 import os
 import time
 from PIL import Image
-from tesserocr import PyTessBaseAPI, RIL, PSM , OEM
 from pythainlp.tokenize import word_tokenize
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 import torch
@@ -16,10 +14,8 @@ import requests
 import numpy as np
 import json
 import base64
-import keyboard
 from django.conf import settings
 from django.http import JsonResponse
-from bs4 import BeautifulSoup
 from .forms import ImageUploadForm
 import numpy as np
 from django.core.files.storage import FileSystemStorage
@@ -39,7 +35,7 @@ import json
 from django.core import serializers
 from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib import messages
-
+from pytesseract import *
 
 
 
@@ -276,24 +272,12 @@ def get_person_names(text):
 def ocr(request):
     media_path = os.path.join(settings.MEDIA_ROOT, 'capture.jpg')
     ocr_path = os.path.join(settings.OCR_ROOT, 'tessdata_best-main')
-    #set image dpi
-    # img = Image.open(media_path)
-    # img = cv2.imread(media_path)
-    # gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    #new size 1050x1024
-    # dpi = 300
-    # resized = cv2.resize(gray, (int(1050 * dpi / 300), int(1024 * dpi / 300)), interpolation = cv2.INTER_AREA)
-    
-    # cv2.imwrite(media_path, resized)
-  
-    
-    
-
 
     if os.path.exists(media_path):
-        with PyTessBaseAPI(path=ocr_path, lang='tha+eng', oem=OEM.LSTM_ONLY, psm=PSM.AUTO_OSD) as api:
-            api.SetImageFile(media_path)
-            text = api.GetUTF8Text()
+            custom_oem_psm_config = r'--oem 3 --psm 6'
+            tessdata_dir_config = f'--tessdata-dir {ocr_path}'
+            text = image_to_string(media_path,lang='tha+eng',config=custom_oem_psm_config+''+tessdata_dir_config)
+            print(text)
 
 
             person_names = get_person_names(text)
