@@ -274,9 +274,11 @@ def ocr(request):
     media_path = os.path.join(settings.MEDIA_ROOT, 'capture.jpg')
     ocr_path = os.path.join(settings.OCR_ROOT, 'tessdata_best-main')
     pytesseract.tesseract_cmd = settings.TESSERACT_CMD
+    current_directory = os.getcwd()
+    print('path ====>',current_directory)
 
     if os.path.exists(media_path):
-            custom_oem_psm_config = r'--oem 3 --psm 6'
+            custom_oem_psm_config = r'--oem 1 --psm 1'
             tessdata_dir_config = f'--tessdata-dir {settings.OCR_PATH}'
             text = image_to_string(media_path,lang='tha+eng',config=custom_oem_psm_config+''+tessdata_dir_config)
             print(text)
