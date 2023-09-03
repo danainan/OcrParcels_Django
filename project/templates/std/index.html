@@ -16,6 +16,7 @@
         <div class="container-fluid">
           <a class="navbar-brand" style="color: white;"><span><i class="fa-solid fa-box"></i></span> PacelDorm</a>
           <form class="d-flex" action="login/">
+            {% csrf_token %}
             <button class="btn btn-outline-success" type="submit">LOGIN FOR ADMIN</button>
           </form>
         </div>
