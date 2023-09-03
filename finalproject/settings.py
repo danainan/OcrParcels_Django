@@ -151,6 +151,8 @@ CSRF_COOKIE_SECURE = False
 
 CSRF_COOKIE_HTTPONLY = False
 
+SESSION_COOKIE_SECURE = False
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
 
 # Static files (CSS, JavaScript, Images)
