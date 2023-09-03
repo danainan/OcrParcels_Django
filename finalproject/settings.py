@@ -23,7 +23,6 @@ OCR_ROOT = os.path.join(BASE_DIR, 'ocr/ocrdata')
 MODEL_ROOT = os.path.join(BASE_DIR, 'ocr/model')
 #TESSERACT_CMD = r'app/ocr/ocrdata/Tesseract-OCR/tesseract.exe'
 #OCR_PATH = r'app/ocr/ocrdata/tessdata_best-main'
-TESSERACT_CMD = os.path.join(BASE_DIR, 'ocr/ocrdata/Tesseract-OCR/tesseract.exe')
 OCR_PATH = os.path.join(BASE_DIR, 'ocr/ocrdata/tessdata_best-main')
 
 # Quick-start development settings - unsuitable for production
