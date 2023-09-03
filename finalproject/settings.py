@@ -34,8 +34,8 @@ SECRET_KEY = "django-insecure-@lny6gwv83(&%1=ekfa)=e7)b3!_&t1rkgggpk=#gysr2cwasg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ocrparcelsdjango-production.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['ocrparcelsdjango-production.up.railway.app']
+ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://ocrparcelsdjango-production.up.railway.app','ocrparcelsdjango-production.up.railway.app']
 CSRF_COOKIE_DOMAIN = 'ocrparcelsdjango-production.up.railway.app'
 
 
