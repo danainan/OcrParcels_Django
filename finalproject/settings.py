@@ -149,7 +149,7 @@ USE_TZ = True
 
 CSRF_COOKIE_SECURE = True
 
-CSRF_COOKIE_HTTPONLY = False
+CSRF_COOKIE_HTTPONLY = True
 
 SESSION_COOKIE_SECURE = False
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
