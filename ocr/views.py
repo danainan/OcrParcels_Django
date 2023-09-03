@@ -276,6 +276,7 @@ def ocr(request):
     pytesseract.tesseract_cmd = settings.TESSERACT_CMD
     current_directory = os.getcwd()
     print('path ====>',current_directory)
+    print(os.path.exists(settings.TESSERACT_CMD))
 
     if os.path.exists(media_path):
             custom_oem_psm_config = r'--oem 1 --psm 1'
