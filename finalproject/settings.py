@@ -35,8 +35,8 @@ SECRET_KEY = "django-insecure-@lny6gwv83(&%1=ekfa)=e7)b3!_&t1rkgggpk=#gysr2cwasg
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['ocrparcelsdjango-production.up.railway.app','*','https://ocrparcelsdjango-production.up.railway.app']
-CSRF_COOKIE_DOMAIN = ['ocrparcelsdjango-production.up.railway.app','*','https://ocrparcelsdjango-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['ocrparcelsdjango-production.up.railway.app','*','https://ocrparcelsdjango-production.up.railway.app','http://*','https://*']
+CSRF_COOKIE_DOMAIN = ['ocrparcelsdjango-production.up.railway.app','*','https://ocrparcelsdjango-production.up.railway.app','http://*','https://*']
 
 
 
@@ -61,8 +61,7 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'django.middleware.csrf.CsrfViewMiddleware',
+    "django.middleware.clickjacking.XFrameOptionsMiddleware"
 ]
 
 ROOT_URLCONF = "finalproject.urls"
@@ -147,6 +146,11 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
+
+CSRF_COOKIE_SECURE = False
+
+CSRF_COOKIE_HTTPONLY = False
+
 
 
 # Static files (CSS, JavaScript, Images)
