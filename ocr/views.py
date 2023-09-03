@@ -279,7 +279,8 @@ def ocr(request):
 
     if os.path.exists(media_path):
             custom_oem_psm_config = r'--oem 1 --psm 1'
-            text = image_to_string(media_path,lang='tha+eng',config=custom_oem_psm_config)
+            tessdata_dir_config = f'--tessdata-dir {settings.OCR_PATH}'
+            text = image_to_string(media_path,lang='tha+eng',config=custom_oem_psm_config+''+tessdata_dir_config)
             print(text)
 
 
